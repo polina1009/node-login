@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script
+                src="https://code.jquery.com/jquery-3.3.1.js"
+                integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+                crossorigin="anonymous"></script>
+        <!--<script src="index.js"></script>-->
+    </head>
+    <body>
+        <input id="email" type="email" placeholder="email">
+        <input id="password" type="password" placeholder="password">
+        <button id="login">click me</button>
+        <script>
+//            function sendAjax() {
+//                $.ajax({
+//                    type: "GET",
+//                    url: 'http://localhost:3000/secret',
+//        //        data: data,
+//                    success: (response) => {
+//                        console.log(response);
+//                    },
+//        //        dataType: dataType
+//                });
+//            }
+            var emailHtml = document.getElementById('email');
+            var passwordHtml = document.getElementById('password');
+
+            function doLogin(email, password) {
+                const url = "http://localhost:3000/login-user";
+                const data = { email, password };
+                function success( response ) {
+                    document.createElement('p').innerHTML = response
+                }
+                function fail( response ) {
+                    document.createElement('p').innerHTML = response.responseText
+                }
+                $.post( url, data, success, "json");
+
+                // $.ajax({ type: "POST", url, data, success, fail, dataType: 'application/json' });
+                // $.post( url, data ).done(success).fail(fail);
+            }
+
+            login.onclick = () => {
+                doLogin(emailHtml.value, passwordHtml.value);
+            };
+        </script>
+    </body>
+</html>
